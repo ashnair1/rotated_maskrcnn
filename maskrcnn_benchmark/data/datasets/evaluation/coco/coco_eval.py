@@ -218,7 +218,7 @@ def prepare_for_coco_segmentation(predictions, dataset):
         for mask in masks:
             if mask.dtype != torch.uint8:
                 mask = mask.to(dtype=torch.uint8)
-            rles.append(mask_util.encode(np.array(mask[0, :, :, np.newaxis], order="F"))[0])
+            rles.append(mask_util.encode(np.array(mask[0, :, :, np.newaxis], dtype=np.uint8, order="F"))[0])
         for rle in rles:
             rle["counts"] = rle["counts"].decode("utf-8")
 

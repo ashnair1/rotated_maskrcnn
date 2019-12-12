@@ -34,6 +34,14 @@ class DatasetCatalog(object):
             "img_dir": "coco/val2017",
             "ann_file": "coco/annotations/instances_val2017.json"
         },
+        "isaid_train": {
+            "img_dir": "isaid/images/train",
+            "ann_file": "isaid/annotations/instances_train.json"
+        },
+        "isaid_val": {
+            "img_dir": "isaid/images/val",
+            "ann_file": "isaid/annotations/instances_val.json"
+        },
         "coco_2014_train": {
             "img_dir": "coco/train2014",
             "ann_file": "coco/annotations/instances_train2014.json"
@@ -135,6 +143,20 @@ class DatasetCatalog(object):
                 ann_file=os.path.join(data_dir, attrs["ann_file"]),
             )
             factory = "COCODataset" if "cocopose" not in name else "COCOPoseDataset"
+            return dict(
+                factory=factory,
+                args=args,
+            )
+        elif "isaid" in name:
+            home = "/home/an1/rotated_maskrcnn/"
+            data_dir = DatasetCatalog.DATA_DIR
+            attrs = DatasetCatalog.DATASETS[name]
+            args = dict(
+                root=os.path.join(home, data_dir, attrs["img_dir"]),
+                ann_file=os.path.join(home, data_dir, attrs["ann_file"]),
+            )
+
+            factory = "iSAIDDataset"
             return dict(
                 factory=factory,
                 args=args,
