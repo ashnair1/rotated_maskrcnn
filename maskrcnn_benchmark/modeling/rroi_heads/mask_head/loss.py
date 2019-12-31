@@ -235,7 +235,7 @@ def make_roi_mask_loss_evaluator(cfg):
     matcher = Matcher(
         cfg.MODEL.ROI_HEADS.FG_IOU_THRESHOLD,
         cfg.MODEL.ROI_HEADS.BG_IOU_THRESHOLD,
-        allow_low_quality_matches=False,
+        allow_low_quality_matches=True,
     )
 
     loss_evaluator = MaskRCNNLossComputation(
