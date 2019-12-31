@@ -18,9 +18,9 @@ if __name__ == '__main__':
 
     # CLASSES = ["__background__", "text"]
 
-    config_file = "configs/mscoco/mscoco_miou_4x.yaml"
-    model_file = "checkpoints/mscoco/mscoco_miou/model_final.pth"
-    image_dir = "/data/MSCOCO/val2014"
+    config_file = "configs/rotated/e2e_ms_rcnn_R_50_FPN_1x_isaid_multi.yaml" #"configs/mscoco/mscoco_miou_4x.yaml"
+    model_file = "checkpoints/rotated/msisaid_msrcnn/model_final.pth" #"checkpoints/mscoco/mscoco_miou/model_final.pth"
+    image_dir = "/home/an1/Datasets/iiai/images/val" #"/data/MSCOCO/val2014"
     image_files = glob.glob("%s/*.jpg"%(image_dir))
 
     prediction_model = Predictor(config_file, min_score=confidence_threshold, device="cuda")

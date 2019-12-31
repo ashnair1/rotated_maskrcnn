@@ -223,6 +223,8 @@ def convert_pts_to_rect(pts, make_width_larger=True):
     rect1 = cv2.minAreaRect(pts)
 
     x, y, w, h, theta = rect1[0][0], rect1[0][1], rect1[1][0], rect1[1][1], rect1[2]
+    if str(theta) == "-0.0":
+        theta = 0.0
     if make_width_larger:
         if h >= w:
             h, w = w, h

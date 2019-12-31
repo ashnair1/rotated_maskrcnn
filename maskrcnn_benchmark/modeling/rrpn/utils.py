@@ -66,6 +66,9 @@ def get_segmentation_mask_rotated_rect_tensor(seg_mask):
         # TODO: MAKE CONFIGURABLE: make_width_larger?
         rect = convert_pts_to_rect(pp.cpu().numpy(), make_width_larger=False)  # convert the polygon into a rotated rect
         xc, yc, w, h, angle = rect
+        # Skip invalid annotations
+        if w == 0 or h == 0:
+            continue
         # normalize to -45 to 45 degrees
         assert -90 <= angle <= 0
         if angle < -45:
