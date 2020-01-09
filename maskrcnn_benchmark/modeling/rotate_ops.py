@@ -152,7 +152,11 @@ def paste_rotated_roi_in_image(image, roi_image, roi):
     h = int(np.round(h))
     rh, rw = roi_image.shape[:2]
     if rw != w or rh != h:
-        roi_image = cv2.resize(roi_image, (w, h))
+        try:
+            roi_image = cv2.resize(roi_image, (w, h))
+        except:
+            print("Invalid shape {} x {} ".format(h,w))
+
 
     # generate the mapping of points from roi_image to an image
     M = get_rotated_roi_pixel_mapping(roi)
